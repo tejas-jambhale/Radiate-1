@@ -1,0 +1,32 @@
+{% load static %}
+<html lang="en">
+<head>
+<title>Jigyasa•Login</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<link rel="stylesheet" href="{% static 'css/login.css'%}">
+
+</head>
+<body background="{% static 'images/circuit-bg.png' %}">
+    <div class="mainlogo"><img src="{% static 'images/jigyasa-white.png' %}" height="100px"></div>
+    <div class="box">
+    <div class="container">
+        <h1 class="log-in">Log In</h1>
+        <form method="post">
+            {% csrf_token %}
+            {% for message in messages %}
+                <p id="messages">{{message}}</p>
+            {% endfor %}
+            <label for="username">Username</label><br>
+            <input type="text" id="username" placeholder="Enter Username" class="email">
+            <label for="password">Password</label>
+            <input type="password" id="password" placeholder="Enter Password">
+            <input type="submit" class="nextlink">
+            <p class="link">Don't have an account? <a class="login" href="{% url 'register' %}">Register here</a></p>
+            <a class="forgot" href="#">Forgot password?</a>
+        </form>
+</div>
+</div>
+
+
+</body>
+</html>
