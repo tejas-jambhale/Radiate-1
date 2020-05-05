@@ -1,8 +1,9 @@
 from django.contrib import admin
-from .models import Question, Team
+from .models import Question, Team, Problem
 
 # Register your models here.
 admin.site.register(Team)
+admin.site.register(Problem)
 
 
 class QuestionsAdmin(admin.ModelAdmin):

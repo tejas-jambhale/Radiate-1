@@ -10,20 +10,16 @@ body{
 }
 
 .container{
-
-    padding: 4%;
-    width:80%;
-    margin-left: 6%;
-    margin-top: 2%;
-    margin-right: 6%;
-    border-right: 1px solid  rgb(165, 176, 235);
-        border-left: 1px solid    rgb(165, 176, 235);
-        border-top: 1px solid    rgb(165, 176, 235);
-        border-bottom: 1px solid  rgb(165, 176, 235);
-    box-shadow: 0 0 1px rgb(0,42,255), 0 0 2px rgb(0,42,255), 0 0 6px rgb(0,42,255), 0 0 12px rgb(0,42,255), inset 0 0 2px rgb(0,42,255), inset 0 0 6px rgb(0,42,255), inset 0 0 12px rgb(0,42,255);
-
-
-
+padding: 4%;
+width:80%;
+margin-left: 18%;
+margin-top: 2%;
+margin-right: 6%;
+border-right: 1px solid  rgb(165, 176, 235);
+border-left: 1px solid    rgb(165, 176, 235);
+border-top: 1px solid    rgb(165, 176, 235);
+border-bottom: 1px solid  rgb(165, 176, 235);
+box-shadow: 0 0 1px rgb(0,42,255), 0 0 2px rgb(0,42,255), 0 0 6px rgb(0,42,255), 0 0 12px rgb(0,42,255), inset 0 0 2px rgb(0,42,255), inset 0 0 6px rgb(0,42,255), inset 0 0 12px rgb(0,42,255);
 }
 .log-in{
     color:white;
@@ -146,7 +142,7 @@ input[type=email]{
     }
     .mainlogo{
       margin-top:2%;
-      margin-left: 40%;
+      margin-left: 37%;
       margin-bottom: 0.5%;
     display: inline-block;
     }

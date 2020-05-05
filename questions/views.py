@@ -1,29 +1,44 @@
 from django.http import HttpResponseRedirect, HttpResponse
 from django.shortcuts import render, get_object_or_404
-from .models import Question, Team
+from .forms import TeamForm
+from .models import Question, Team, Problem
 from django.urls import reverse
 
 
 # Create your views here.
 def detailView(request, pk):
     if request.user.is_authenticated:
-        question_list = Question.objects.filter(set_number=pk).order_by('order_number')
         team = Team.objects.get(username=request.user.id)
-        team_current = team.current_question
-        question = question_list.get(order_number=team_current)
-        context = {'question': question}
-        return render(request, 'questions/question.html', context)
+        if pk == team.set_selected:
+            question_list = Question.objects.filter(set_number=pk).order_by('order_number')
+            team_current = team.current_question
+            if team_current == 6:
+                return HttpResponseRedirect(reverse('problem', args=(pk,)))
+            else:
+                question = question_list.get(order_number=team_current)
+                context = {'question': question}
+                return render(request, 'questions/question.html', context)
+        else:
+            return HttpResponseRedirect(reverse('nope'))
     else:
         return HttpResponseRedirect(reverse('login'))
 
 
-# def select(request):
-#     if request.method == 'GET':
-#         form = CodeForm()
-#         if form.is_valid():
-#             code = form.cleaned_data['code']
-#             print(code)
-#         return render(request, '/detail.html', {'form': form})
+def select(request):
+    if request.user.is_authenticated:
+        if request.method == 'POST':
+            form = TeamForm(request.POST)
+            if form.is_valid():
+                name = form.cleaned_data['team_name']
+                my_set = form.cleaned_data['set_number']
+                t = Team(name=name, username=request.user, set_selected=my_set)
+                t.save()
+                return HttpResponseRedirect(reverse('detail', args=(my_set,)))
+
+        form = TeamForm()
+        return render(request, 'questions/select.html', {'form': form})
+    else:
+        return HttpResponseRedirect(reverse('login'))
 
 
 def answer(request, question_id):
@@ -41,4 +56,24 @@ def answer(request, question_id):
 
 
 def success(request):
-    return HttpResponse("Success")
+    team = Team.objects.get(username=request.user.id)
+    pk = team.set_selected
+    num = team.current_question
+    if num == 6:
+        return HttpResponseRedirect(reverse('problem', args=(pk,)))
+    else:
+        context = {'pk': pk, 'num': num}
+        return render(request, 'questions/success.html', context)
+
+
+def problem(request, pk):
+    problem_statement = Problem.objects.get(number=pk)
+    context = {'problem': problem_statement}
+    return render(request, 'questions/problem.html', context)
+
+
+def nope(request):
+    team = Team.objects.get(username=request.user.id)
+    pk = team.set_selected
+    context = {'pk': pk}
+    return render(request, 'questions/nope.html', context)

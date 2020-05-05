@@ -5,7 +5,7 @@ from .forms import CreateUserForm
 from django.contrib import messages
 
 
-# Create your views here.curl
+# Create your views here
 def registerPage(request):
     if request.user.is_authenticated:
         return redirect('home')
@@ -46,7 +46,7 @@ def loginPage(request):
 
 def logoutUser(request):
     logout(request)
-    messages.info(request, 'Sucessfully Logged out')
+    messages.info(request, 'Successfully Logged out')
     return redirect("login")
 
 
