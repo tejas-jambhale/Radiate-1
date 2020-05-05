@@ -115,6 +115,19 @@ input[type=email]{
   .forgot:hover{
       opacity: 1;
   }
+  .link{
+        color: white;
+        text-align: center;
+      }
+  .login{
+      cursor: pointer;
+        color: white;
+        opacity: 0.5;
+        text-decoration: underline;
+      }
+      .login:hover{
+        opacity: 1;
+      }
   #messages{
 			background-color: red;
 			color: #fff;
@@ -247,5 +260,9 @@ input[type=email]{
 			color: #fff;
 			padding: 10px;
 			margin-top: 10px;
+		}
+		.errorlist{
+		    color: white;
+		    list-style-type:none;
 		}
   }

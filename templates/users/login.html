@@ -17,9 +17,9 @@
                 <p id="messages">{{message}}</p>
             {% endfor %}
             <label for="username">Username</label><br>
-            <input type="text" id="username" placeholder="Enter Username" class="email">
+            <input type="text" id="username" placeholder="Enter Username" class="email" name="username">
             <label for="password">Password</label>
-            <input type="password" id="password" placeholder="Enter Password">
+            <input type="password" id="password" placeholder="Enter Password" name="password">
             <input type="submit" class="nextlink">
             <p class="link">Don't have an account? <a class="login" href="{% url 'register' %}">Register here</a></p>
             <a class="forgot" href="#">Forgot password?</a>

@@ -1,6 +1,6 @@
 from django.contrib.auth import authenticate, login, logout
+from django.http import HttpResponse
 from django.shortcuts import render, redirect
-from django.contrib.auth.forms import UserCreationForm
 from .forms import CreateUserForm
 from django.contrib import messages
 
@@ -48,3 +48,7 @@ def logoutUser(request):
     logout(request)
     messages.info(request, 'Sucessfully Logged out')
     return redirect("login")
+
+
+def homePage(request):
+    return HttpResponse("Hello World")
