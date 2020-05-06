@@ -16,7 +16,7 @@
           <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
           <a href="#"><img src="{% static 'images/team.gif' %}" style="width:30px;height:30px;background-color:transparent;margin-right:10px;">Profile</a>
           <a href="#"><img src="{% static 'images/score.gif' %}"style="width:30px;height:30px;background-color:transparent;margin-right:10px">Score</a>
-          <a href="#"><img src="{% static 'images/log out.gif' %}" style="width:30px;height:30px;background-color:transparent;margin-right:10px">Log out</a>
+          <a href="{% url 'users:logout' %}"><img src="{% static 'images/log out.gif' %}" style="width:30px;height:30px;background-color:transparent;margin-right:10px">Log out</a>
         </div>
     <span style="font-size:30px;cursor:pointer;float:right;" onclick="openNav()"><i class="fa fa-fw fa-user-circle" style="color: #8ECAF4; margin:30px;"></i>  </span>
 

@@ -1,3 +1,4 @@
+from django.contrib.auth.decorators import login_required
 from django.http import HttpResponseRedirect, HttpResponse
 from django.shortcuts import render, get_object_or_404
 from .forms import TeamForm
@@ -6,22 +7,20 @@ from django.urls import reverse
 
 
 # Create your views here.
+@login_required(login_url='users:login')
 def detailView(request, pk):
-    if request.user.is_authenticated:
-        team = Team.objects.get(username=request.user.id)
-        if pk == team.set_selected:
-            question_list = Question.objects.filter(set_number=pk).order_by('order_number')
-            team_current = team.current_question
-            if team_current == 6:
-                return HttpResponseRedirect(reverse('problem', args=(pk,)))
-            else:
-                question = question_list.get(order_number=team_current)
-                context = {'question': question}
-                return render(request, 'questions/question.html', context)
+    team = Team.objects.get(username=request.user.id)
+    if pk == team.set_selected:
+        question_list = Question.objects.filter(set_number=pk).order_by('order_number')
+        team_current = team.current_question
+        if team_current == 6:
+            return HttpResponseRedirect(reverse('problem', args=(pk,)))
         else:
-            return HttpResponseRedirect(reverse('nope'))
+            question = question_list.get(order_number=team_current)
+            context = {'question': question}
+            return render(request, 'questions/question.html', context)
     else:
-        return HttpResponseRedirect(reverse('login'))
+        return HttpResponseRedirect(reverse('nope'))
 
 
 def select(request):
@@ -41,6 +40,7 @@ def select(request):
         return HttpResponseRedirect(reverse('login'))
 
 
+@login_required(login_url='users:login')
 def answer(request, question_id):
     question = get_object_or_404(Question, pk=question_id)
     if question.answer_text == request.POST['answer']:
@@ -55,6 +55,7 @@ def answer(request, question_id):
         })
 
 
+@login_required(login_url='users:login')
 def success(request):
     team = Team.objects.get(username=request.user.id)
     pk = team.set_selected
@@ -66,12 +67,14 @@ def success(request):
         return render(request, 'questions/success.html', context)
 
 
+@login_required(login_url='users:login')
 def problem(request, pk):
     problem_statement = Problem.objects.get(number=pk)
     context = {'problem': problem_statement}
     return render(request, 'questions/problem.html', context)
 
 
+@login_required(login_url='users:login')
 def nope(request):
     team = Team.objects.get(username=request.user.id)
     pk = team.set_selected

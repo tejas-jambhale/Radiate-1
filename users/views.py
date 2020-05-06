@@ -1,4 +1,5 @@
 from django.contrib.auth import authenticate, login, logout
+from django.contrib.auth.decorators import login_required
 from django.http import HttpResponse
 from django.shortcuts import render, redirect
 from .forms import CreateUserForm
@@ -8,7 +9,7 @@ from django.contrib import messages
 # Create your views here
 def registerPage(request):
     if request.user.is_authenticated:
-        return redirect('home')
+        return redirect('users:home')
     else:
         form = CreateUserForm()
         if request.method == 'POST':
@@ -18,7 +19,7 @@ def registerPage(request):
                 user = form.cleaned_data.get('username')
                 messages.success(request, 'Account was created for ' + user)
 
-                return redirect('login')
+                return redirect('users:login')
 
     context = {'form': form}
     return render(request, "users/register.html", context)
@@ -26,7 +27,7 @@ def registerPage(request):
 
 def loginPage(request):
     if request.user.is_authenticated:
-        return redirect('home')
+        return redirect('users:home')
     else:
         if request.method == 'POST':
             username = request.POST.get('username')
@@ -36,7 +37,7 @@ def loginPage(request):
 
             if user is not None:
                 login(request, user)
-                return redirect('home')
+                return redirect('users:home')
             else:
                 messages.info(request, 'Username or Password is incorrect')
 
@@ -47,8 +48,9 @@ def loginPage(request):
 def logoutUser(request):
     logout(request)
     messages.info(request, 'Successfully Logged out')
-    return redirect("login")
+    return redirect("users:login")
 
 
+@login_required(login_url='users:login')
 def homePage(request):
-    return HttpResponse("Hello World")
+    return render(request, 'users/home.html')
