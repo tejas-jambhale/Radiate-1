@@ -24,20 +24,25 @@ def detailView(request, pk):
 
 
 def select(request):
-    if request.user.is_authenticated:
-        if request.method == 'POST':
-            form = TeamForm(request.POST)
-            if form.is_valid():
-                name = form.cleaned_data['team_name']
-                my_set = form.cleaned_data['set_number']
-                t = Team(name=name, username=request.user, set_selected=my_set)
-                t.save()
-                return HttpResponseRedirect(reverse('detail', args=(my_set,)))
+    try:
+        team = Team.objects.get(username=request.user.id)
+    except(KeyError, Team.DoesNotExist):
+        if request.user.is_authenticated:
+            if request.method == 'POST':
+                form = TeamForm(request.POST)
+                if form.is_valid():
+                    name = form.cleaned_data['team_name']
+                    my_set = request.POST['radio']
+                    t = Team(name=name, username=request.user, set_selected=my_set)
+                    t.save()
+                    return HttpResponseRedirect(reverse('detail', args=(my_set,)))
 
-        form = TeamForm()
-        return render(request, 'questions/select.html', {'form': form})
+            form = TeamForm()
+            return render(request, 'questions/select.html', {'form': form})
+        else:
+            return HttpResponseRedirect(reverse('login'))
     else:
-        return HttpResponseRedirect(reverse('login'))
+        return HttpResponseRedirect(reverse('detail', args=(team.set_selected,)))
 
 
 @login_required(login_url='users:login')
@@ -80,3 +85,13 @@ def nope(request):
     pk = team.set_selected
     context = {'pk': pk}
     return render(request, 'questions/nope.html', context)
+
+
+@login_required(login_url='users:login')
+def score(request):
+    team = Team.objects.get(username=request.user.id)
+    pk = team.set_selected
+    num = team.current_question
+    x = (num-1)*20
+    context = {'pk': pk, 'x': x}
+    return render(request, 'questions/score.html', context)

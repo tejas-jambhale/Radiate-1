@@ -10,16 +10,26 @@
     <link rel="stylesheet" href="{% static 'css/base.css' %}">
 </head>
 
-<header>
-    <body class="page-container" background="{% static 'images/base-bg.png' %}" style="background-color: rgb(4,4,4);">
+<body class="page-container" background="{% static 'images/circuit-bg.png' %}" style="background-color: rgb(4,4,4);">
+    <header>
+
         <div id="mySidenav" class="sidenav">
           <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
-          <a href="#"><img src="{% static 'images/team.gif' %}" style="width:30px;height:30px;background-color:transparent;margin-right:10px;">Profile</a>
-          <a href="#"><img src="{% static 'images/score.gif' %}"style="width:30px;height:30px;background-color:transparent;margin-right:10px">Score</a>
+          <a href="#"><img src="{% static 'images/team.gif' %}" style="width:30px;height:30px;background-color:transparent;margin-right:10px;">{{request.user}}</a>
+          <a href="{% url 'score' %}"><img src="{% static 'images/score.gif' %}"style="width:30px;height:30px;background-color:transparent;margin-right:10px">Score</a>
           <a href="{% url 'users:logout' %}"><img src="{% static 'images/log out.gif' %}" style="width:30px;height:30px;background-color:transparent;margin-right:10px">Log out</a>
         </div>
     <span style="font-size:30px;cursor:pointer;float:right;" onclick="openNav()"><i class="fa fa-fw fa-user-circle" style="color: #8ECAF4; margin:30px;"></i>  </span>
+        <div class="container text-center"><img class="abclogo" src="{% static 'images/Radiate.png' %}"></div>
+    </header>
 
+{% block content %}
+
+
+
+{% endblock %}
+
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
     <script>
     function openNav() {
       document.getElementById("mySidenav").style.width = "250px";
@@ -29,16 +39,6 @@
       document.getElementById("mySidenav").style.width = "0";
     }
     </script>
-
-        <div class="container text-center"><img class="abclogo" src="{% static 'images/Radiate.png' %}"></div></header>
-
-{% block content %}
-
-
-
-{% endblock %}
-
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
 </body>
 
 </html>

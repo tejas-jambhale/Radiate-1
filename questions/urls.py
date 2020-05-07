@@ -7,5 +7,6 @@ urlpatterns = [
     path('success/', views.success, name='success'),
     path('select/', views.select, name='select'),
     path('<int:pk>/problem/', views.problem, name='problem'),
-    path('nope/', views.nope, name='nope')
+    path('nope/', views.nope, name='nope'),
+    path('score/', views.score, name="score")
 ]

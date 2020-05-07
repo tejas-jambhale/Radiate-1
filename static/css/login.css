@@ -131,7 +131,6 @@ input[type=email]{
 			margin-top: 10px;
 		}
 
-
   @media screen and (min-width:900px){
     body{
         font-family: sans-serif;
@@ -261,4 +260,5 @@ input[type=email]{
 		    color: white;
 		    list-style-type:none;
 		}
+
   }

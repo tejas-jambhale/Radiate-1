@@ -1,7 +1,7 @@
 {% load static %}
 <html lang="en">
 <head>
-<title>Jigyasa•Login</title>
+<title>Radiate•Login</title>
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 <link rel="stylesheet" href="{% static 'css/login.css' %}">
 
@@ -22,11 +22,15 @@
             <input type="password" id="password" placeholder="Enter Password" name="password">
             <input type="submit" class="nextlink">
             <p class="link">Don't have an account? <a class="login" href="{% url 'users:register' %}">Register here</a></p>
-            <a class="forgot" href="#">Forgot password?</a>
+            <a class="forgot" href="#" onclick="myFunction()">Forgot password?</a>
         </form>
 </div>
 </div>
-
+        <script>
+        function myFunction() {
+          alert("Contact the Organizers(Manan Rakesh Sharma - 9761279427)");
+        }
+        </script>
 
 </body>
 </html>

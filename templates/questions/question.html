@@ -1,20 +1,35 @@
-<html>
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport"
-          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Questions</title>
-</head>
-<body>
-    <h2>{{ question.question_text }}</h2>
-    {% if error_message %}<p><strong>{{ error_message }}</strong></p>{% endif %}
+{%  extends 'questions/base.html' %}
+
+{% block content %}
+
+<div style="margin: auto;width: 80%;height: 50%;">
+    <h2 class="question">{{ question.question_text }}</h2>
+    {% if error_message %}<p id="messages"><strong>{{ error_message }}</strong></p>{% endif %}
     <form action="{% url 'answer' question.qid %}" method="post">
     {% csrf_token %}
-        <input type="text" name="answer">
-        <input type="submit" value="Enter">
+        <input type="text" name="answer" placeholder="Your answer..." style="width: 60%;height: 50px;text-align: center;font-size: 20px;background-color: black;opacity: 0.7;border: black solid 1px;color: white;"><br><br>
+        <input type="submit" value="Enter" style="margin-left: 30%; width: 30%;height: 40px;text-align: center;font-size: 15px;background-color: black;opacity: 0.7;border: black solid 1px;color: white; border-radius: 5px">
     </form>
-    <p>{{ team.name }}</p>
-</body>
-</html>
+</div>
+<style>
+    .question{
+    color:white;text-align: left;font-style: bold;font size:20px;font-style: italic;font-weight: bold;line-height: 25px;
+
+    }
+     @media screen and (min-width:1000px){
+     color:white;text-align: left;font-style: bold;font size:20px;font-style: italic;font-weight: bold;line-height: 25px;margin: 50px; padding: 0px 50px;
+     }
+     #messages{
+			background-color: #ff7f7f;
+			border: solid indianred 1.5px;
+			border-radius: 7px;
+			color: #fff;
+			padding: 8px;
+			margin-top: 10px;
+			width: 50%;
+			margin: auto;
+			font-size: 18px;
+		}
+</style>
+{% endblock %}
 

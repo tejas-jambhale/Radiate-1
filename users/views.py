@@ -51,6 +51,5 @@ def logoutUser(request):
     return redirect("users:login")
 
 
-@login_required(login_url='users:login')
 def homePage(request):
     return render(request, 'users/home.html')

@@ -1,0 +1,25 @@
+{% load static %}
+<html>
+<head>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css">
+<link rel="stylesheet" href="{% static 'css/number.css' %}">
+<title>Choose a Question Set</title>
+</head>
+<body background="{% static 'images/circuit-bg.png' %}">
+
+    <img src="{% static 'images/ABC LOGO.png' %}"  class="abclogo">
+    <div class="container text-center"><img class="radlogo" src="{% static 'images/Radiate.png' %}"></div>
+    <div class='heading' style="margin-top: 8%;">Your Score is: </div>
+     <div style="margin-left: 40%; margin-right:40%;margin-top: 2%; margin-bottom: 2%;display: block; border-right: 1px solid  rgb(165, 176, 235);border-left: 1px solid    rgb(165, 176, 235);border-top: 1px solid    rgb(165, 176, 235);border-bottom: 1px solid  rgb(165, 176, 235);padding: 2%;box-shadow: 0 0 1px rgb(0,42,255), 0 0 2px rgb(0,42,255), 0 0 6px rgb(0,42,255), 0 0 12px rgb(0,42,255), inset 0 0 2px rgb(0,42,255), inset 0 0 6px rgb(0,42,255), inset 0 0 12px rgb(0,42,255); color: white; font-size: 150%; text-align: center">{{ x }} points</div>
+
+    <div class="text-center">
+        <a href="{% url 'detail' pk %}" style="color: #fff;background-color: #a048f1;border-color: #007bff;font-weight:700" class="btn btn-primary btn-lg">Head Back</a>
+    </div>
+
+
+<script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.3.2/jquery.min.js"></script>
+
+</body>
+</html>
