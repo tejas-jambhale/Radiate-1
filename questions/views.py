@@ -1,5 +1,5 @@
 from django.contrib.auth.decorators import login_required
-from django.http import HttpResponseRedirect, HttpResponse
+from django.http import HttpResponseRedirect
 from django.shortcuts import render, get_object_or_404
 from django.template.defaultfilters import lower
 
@@ -53,7 +53,7 @@ def answer(request, question_id):
     if lower(question.answer_text) == lower(request.POST['answer']):
         team = Team.objects.get(username=request.user.id)
         team.current_question += 1
-        team.score += 1
+        team.score += 2
         team.save()
         return HttpResponseRedirect(reverse('success'))
     else:
@@ -99,6 +99,6 @@ def score(request):
     team = Team.objects.get(username=request.user.id)
     pk = team.set_selected
     num = team.score
-    x = num * 20
+    x = num * 10
     context = {'pk': pk, 'x': x}
     return render(request, 'questions/score.html', context)
