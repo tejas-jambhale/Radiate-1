@@ -3,5 +3,5 @@
 {% block content %}
 <h2 style="color:white; padding: 1px; margin: 2px; ">Problem Statement:</h2>
 <p class="text-center" style="color: #a048f1;font-size: 20px;padding: 3% 4%;margin: 10px;margin-bottom:10px;text-align:left;">{{ problem.text }}</p>
-<a href="#" style="color: #fff;background-color: #a048f1;border-color: #007bff;font-weight:700; margin-bottom:20px;" class="btn btn-primary btn-lg">Proceed</a>
+<a href="{% url 'users:home' %}" style="color: #fff;background-color: #a048f1;border-color: #007bff;font-weight:700; margin-bottom:20px;" class="btn btn-primary btn-lg">Proceed</a>
 {% endblock %}

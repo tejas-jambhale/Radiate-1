@@ -1,6 +1,8 @@
 from django.contrib.auth.decorators import login_required
-from django.http import HttpResponseRedirect, HttpResponse
+from django.http import HttpResponseRedirect
 from django.shortcuts import render, get_object_or_404
+from django.template.defaultfilters import lower
+
 from .forms import TeamForm
 from .models import Question, Team, Problem
 from django.urls import reverse
@@ -48,9 +50,10 @@ def select(request):
 @login_required(login_url='users:login')
 def answer(request, question_id):
     question = get_object_or_404(Question, pk=question_id)
-    if question.answer_text == request.POST['answer']:
+    if lower(question.answer_text) == lower(request.POST['answer']):
         team = Team.objects.get(username=request.user.id)
         team.current_question += 1
+        team.score += 2
         team.save()
         return HttpResponseRedirect(reverse('success'))
     else:
@@ -74,9 +77,13 @@ def success(request):
 
 @login_required(login_url='users:login')
 def problem(request, pk):
-    problem_statement = Problem.objects.get(number=pk)
-    context = {'problem': problem_statement}
-    return render(request, 'questions/problem.html', context)
+    team = Team.objects.get(username=request.user.id)
+    if pk == team.set_selected:
+        problem_statement = Problem.objects.get(number=pk)
+        context = {'problem': problem_statement}
+        return render(request, 'questions/problem.html', context)
+    else:
+        return HttpResponseRedirect(reverse('nope'))
 
 
 @login_required(login_url='users:login')
@@ -91,7 +98,7 @@ def nope(request):
 def score(request):
     team = Team.objects.get(username=request.user.id)
     pk = team.set_selected
-    num = team.current_question
-    x = (num-1)*20
+    num = team.score
+    x = num * 10
     context = {'pk': pk, 'x': x}
     return render(request, 'questions/score.html', context)
