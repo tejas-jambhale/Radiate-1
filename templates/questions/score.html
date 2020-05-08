@@ -9,10 +9,12 @@
 </head>
 <body background="{% static 'images/circuit-bg.png' %}">
 
-    <img src="{% static 'images/ABC LOGO.png' %}"  class="abclogo">
-    <div class="container text-center"><img class="radlogo" src="{% static 'images/Radiate.png' %}"></div>
-    <div class='heading' style="margin-top: 8%;">Your Score is: </div>
-     <div style="margin-left: 40%; margin-right:40%;margin-top: 2%; margin-bottom: 2%;display: block; border-right: 1px solid  rgb(165, 176, 235);border-left: 1px solid    rgb(165, 176, 235);border-top: 1px solid    rgb(165, 176, 235);border-bottom: 1px solid  rgb(165, 176, 235);padding: 2%;box-shadow: 0 0 1px rgb(0,42,255), 0 0 2px rgb(0,42,255), 0 0 6px rgb(0,42,255), 0 0 12px rgb(0,42,255), inset 0 0 2px rgb(0,42,255), inset 0 0 6px rgb(0,42,255), inset 0 0 12px rgb(0,42,255); color: white; font-size: 150%; text-align: center">{{ x }} points</div>
+    <img src="{% static 'images/ABClogo.png' %}" style="width: 7%; height: 8%; position: absolute;"  class="abclogo">
+    <div class="container text-center" style="height: 80px"><img class="radlogo" src="{% static 'images/Radiate.png' %}" style="width: 60%; margin-top: 3%;"></div>
+    <div class="row" style="height: 50px"></div>
+    <div class='heading' style="margin-top: 8%; text-align: center;font-size: 30px; color: white;">Your Score is: </div>
+    <div class="row" style="height: 5px"></div>
+     <div style="margin-left: 40%; margin-right:40%;margin-top: 2%; margin-bottom: 2%;display: block; border-right: 1px solid  rgb(165, 176, 235);border-left: 1px solid    rgb(165, 176, 235);border-top: 1px solid    rgb(165, 176, 235);border-bottom: 1px solid  rgb(165, 176, 235);padding: 2%;box-shadow: 0 0 1px rgb(0,42,255), 0 0 2px rgb(0,42,255), 0 0 6px rgb(0,42,255), 0 0 12px rgb(0,42,255), inset 0 0 2px rgb(0,42,255), inset 0 0 6px rgb(0,42,255), inset 0 0 12px rgb(0,42,255); color: white; font-size: 130%; text-align: center">{{ x }} points</div>
 
     <div class="text-center">
         <a href="{% url 'detail' pk %}" style="color: #fff;background-color: #a048f1;border-color: #007bff;font-weight:700" class="btn btn-primary btn-lg">Head Back</a>
