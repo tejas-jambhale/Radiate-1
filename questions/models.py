@@ -21,7 +21,7 @@ class Team(models.Model):
     username = models.ForeignKey(User, on_delete=models.CASCADE)
     set_selected = models.IntegerField(choices=[(i, i) for i in range(1, 13)], blank=True)
     current_question = models.IntegerField(choices=[(i, i) for i in range(1, 7)], default=1)
-    score = models.IntegerField(choices=[(i, i) for i in range(1, 6)], default=0)
+    score = models.IntegerField(choices=[(i, i) for i in range(1, 10)], default=0)
 
 
 class Problem(models.Model):
