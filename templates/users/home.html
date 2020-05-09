@@ -58,7 +58,7 @@
                             <h1 class="text-left pulse animated" style="font-size: 25px;color: #68d2ff;width: 100%;font-family: Montserrat, sans-serif;"><em>Perplex | Ignite | Lumos</em></h1>
                             <p class="text-justify pulse animated" style="font-style:normal;text-align: justify;"><strong>Join us and discover new ways to educate. Develop an idea that will spark innovation into learning. Create something significant that brings joy and curiosity to explore new ideas. Can you create something extraordinary in 24 hours? Show us what you've got !</strong><br></p>
                             {% if user.is_authenticated %}
-                                <hr><a class="btn btn-primary btn-xl text-uppercase js-scroll-trigger" role="button" data-bs-hover-animate="swing" href="" style="background-color: #68d2ff;width: 300px;text-shadow: #180ee6 0 0 15px;border: #68d2ff;">Start Quiz</a>
+                                <hr><a class="btn btn-primary btn-xl text-uppercase js-scroll-trigger" role="button" data-bs-hover-animate="swing" href="{% url 'select' %}" style="background-color: #68d2ff;width: 300px;text-shadow: #180ee6 0 0 15px;border: #68d2ff;">Start Quiz</a>
                             {% else %}
                                 <hr><a class="btn btn-primary btn-xl text-uppercase js-scroll-trigger" role="button" data-bs-hover-animate="swing" href="{% url 'users:register' %}" style="background-color: #68d2ff;width: 300px;text-shadow: #180ee6 0 0 15px;border: #68d2ff;">Sign Up</a>
                             {% endif %}
